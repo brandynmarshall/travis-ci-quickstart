@@ -1,4 +1,17 @@
-language: ruby
-rvm:
-  - 2.2
-  - jruby
+language: java
+
+script: mvn package -DskipTests
+
+deploy:
+  provider: s3
+  access_key_id: "Your AWS Access Key"
+  secret_access_key: "Your AWS Secret Key"
+  bucket: "S3 Bucket"
+
+branches:
+  only:
+    - release
+    - stable
+  except:
+    - master
+    - nightly
